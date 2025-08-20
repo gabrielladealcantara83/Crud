@@ -1,67 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Shop</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <title>PHP CRUD MYSQL</title>
+    <!--BOOSTRAP 4 -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <!-- FONT AWESOME    -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
 </head>
+
 <body>
-   <div class="container my-5">
-   <h2>List of Clients</h2>
-   <a href="create.php" class="btn btn-primary" role="button">New Client</a>
-   <br>
-   <table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Created At</th>
-            <th>Action</th>
-        </tr>
-       </thead>
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="index.php">Crud PHP </a>
+            </div>
+        </nav>
+        <main class="container p-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Formulário -->
+                    <div class="card">
+                        <form action="save.php" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="title" class="form-control"
+                                    placeholder="Task Title" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="description" rows="2" class="form-control"
+                                    placeholder="descricao da tarefa"></textarea>
+                            </div>
+                            <input type="submit" name="salvar" class="btn btn-success btn-block"
+                                value="Save Task">
+                        </form>
+                    </div>
+                </div>
+                <!-- formulario -->
 
-       <?php
-       $servername = "localhost";
-       $username = "root";
-       $password = "root";
-       $database = "dt_crud";
-       $connection = new mysqli($servername, $username, $password, $database);
-       if ($connection->connect_error){
-        die("Connection failed " . $connection ->connect_error);
-       }
-       $sql = "SELECT * FROM clients";
-       $result = $connection->query($sql);
-       if(!$result) {
-        die("Invalid query " . $connection->connect_error);
-       }
+                <!-- tabela de tarefas -->
+                <div class="col-md-8">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titulo</th>
+                                <th>Descricao</th>
+                                <th>Criado em</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Atividade</td>
+                                <td>Descrição</td>
+                                <td>15-08-2025</td>
+                                <td><a href="#" class="btn btn-secondary">
+                                        <i class="fas fa-marker"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-danger">
+                                        <i class="far fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /tabela de tarefas -->
+            </div>
+        </main>
+    </div>
 
-       while($row = $result->fetch_assoc()){
-        echo "
-       
-       <tbody>
-        <tr>
-         <td>$row[id]</td>
-         <td>$row[name]</td>
-         <td>$row[email]</td>
-         <td>$row[phone]</td>
-         <td>$row[address]</td>
-         <td>$row[created_at]</td>
-         <td>
-            <a class='btn btn-primary bt-sm' href='edit.php?id=$row[id]'>Edit</a>
-            <a class='btn btn-danger bt-sm' href='delete.php?id=$row[id]'>Delete</a>
-         </td>
-        </tr>
-        ";
-       }
-        ?>
-       </tbody>
-   </table>
-       
-   </div>
+    <!-- BOOTSTRAP 4 SCRIPT -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 </body>
+
 </html>
-       
